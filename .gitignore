@@ -1,3 +1,28 @@
+# ===== IDE & Editor configs =====
+.cursor/
+.agents/
+.vscode/
+.idea/
+
+# ===== AI tool configs =====
 .jetro/
+.mcp.json
+.windsurfrules
+AGENT.md
+CLAUDE.md
+
+# ===== Jetro project data =====
+data/
+projects/
+
+# ===== OS generated files =====
 .DS_Store
 Thumbs.db
+Desktop.ini
+ehthumbs.db
+
+# ===== Logs & temp =====
+*.log
+*.tmp
+*.swp
+*~
