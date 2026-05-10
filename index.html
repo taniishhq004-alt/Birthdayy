@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy 19th Birthday Navya! 🎂✨</title>
+    <meta name="description"
+        content="A special birthday surprise for Navya — the main character of our favorite romcom! Happy 19th Birthday!">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Dancing+Script:wght@400;500;600;700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Sacramento&family=Satisfy&family=Pacifico&family=Great+Vibes&family=Abril+Fatface&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Unbounded:wght@200;300;400;500;700;900&family=Outfit:wght@100;300;400;500;700;900&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Sparkle cursor trail -->
+    <canvas id="sparkle-canvas"></canvas>
+
+    <!-- Navigation dots -->
+    <nav class="nav-dots" aria-label="Page navigation">
+        <button class="nav-dot active" data-section="0" aria-label="Hero section"></button>
+        <button class="nav-dot" data-section="1" aria-label="Magazine section"></button>
+        <button class="nav-dot" data-section="2" aria-label="Scrapbook section"></button>
+        <button class="nav-dot" data-section="3" aria-label="Finale section"></button>
+    </nav>
+
+    <!-- Audio toggle -->
+    <button class="audio-toggle" id="audio-toggle" aria-label="Toggle music">
+        <span class="audio-icon">🎵</span>
+    </button>
+
+    <!-- ==================== SECTION 1: HERO ==================== -->
+    <section class="section section-hero" id="section-0">
+        <!-- Unicorn Studio WebGL Background -->
+        <div class="unicorn-bg" data-us-project="DZcA3dvG3JdEhKqt0Z8o" style="width: 100%; height: 100%;"></div>
+
+        <!-- Floating sparkles -->
+        <div class="sparkles-container" id="sparkles-hero"></div>
+
+        <!-- Full-bleed hero layout -->
+        <div class="hero-fullbleed">
+            <!-- Left bold text (covers OSZ from WebGL) -->
+            <div class="hero-side-text hero-side-left">
+                <span class="side-text-big" style="font-family: 'Unbounded', sans-serif;">HBD</span>
+            </div>
+
+            <!-- Center photo -->
+            <div class="hero-photo-full">
+                <!-- REPLACE: Change src to Navya's photo -->
+                <img src="photos/navya-hero.png" alt="Navya" class="hero-img-full" id="hero-photo">
+                <div class="hero-photo-overlay"></div>
+            </div>
+
+            <!-- Right bold text (covers 001 from WebGL) -->
+            <div class="hero-side-text hero-side-right">
+                <span class="side-text-big" style="font-family: 'Unbounded', sans-serif;">019</span>
+            </div>
+
+            <!-- Center name overlay -->
+            <h1 class="hero-name-overlay">
+                <span class="name-letter" style="--i:0">N</span>
+                <span class="name-letter" style="--i:1">A</span>
+                <span class="name-letter" style="--i:2">V</span>
+                <span class="name-letter" style="--i:3">Y</span>
+                <span class="name-letter" style="--i:4">A</span>
+            </h1>
+
+            <!-- Bottom info bar -->
+            <div class="hero-bottom-bar">
+                <div class="birthday-badge">
+                    <span class="badge-text">TURNING</span>
+                    <span class="badge-number">19</span>
+                    <span class="badge-text">TODAY</span>
+                </div>
+
+                <div class="quote-rotator">
+                    <p class="birthday-quote active" data-index="0">"She's not just a chapter, she's the whole romcom."
+                    </p>
+                    <p class="birthday-quote" data-index="1">"Plot twist: the main character is turning 19!"</p>
+                    <p class="birthday-quote" data-index="2">"Every romcom wish they had a lead like her."</p>
+                    <p class="birthday-quote" data-index="3">"The last page of teens, the first of everything."</p>
+                    <p class="birthday-quote" data-index="4">"End of teen era. Beginning of legend."</p>
+                </div>
+
+                <div class="scroll-hint">
+                    <span>scroll down for more</span>
+                    <div class="scroll-arrow">↓</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Floating hearts -->
+        <div class="floating-hearts" id="floating-hearts"></div>
+    </section>
+
+    <!-- ==================== SECTION 2: MAGAZINE ==================== -->
+    <section class="section section-magazine" id="section-1">
+        <div class="magazine-wrapper">
+            <!-- Magazine cover (page turning effect) -->
+            <div class="magazine-book" id="magazine-book">
+
+                <!-- Page 1: Cover -->
+                <div class="magazine-page page-cover" data-page="0">
+                    <div class="page-front">
+                        <div class="magazine-header">
+                            <span class="mag-date">May 10, 2026</span>
+                            <h2 class="mag-title">THE NAVYA ISSUE</h2>
+                            <span class="mag-subtitle">✦ BIRTHDAY SPECIAL EDITION ✦</span>
+                        </div>
+                        <div class="magazine-cover-photo">
+                            <!-- REPLACE: Change src to Navya's photo -->
+                            <img src="photos/navya-magazine.jpg" alt="Navya" class="mag-photo">
+                        </div>
+                        <div class="magazine-headlines">
+                            <p class="headline headline-1">01 &nbsp; THE GIRL WHO RAGEBAITS ME SO MUCH</p>
+                            <p class="headline headline-2">04 &nbsp; 19 REASONS SHE'S ICONIC </p>
+                            <p class="headline headline-3">07 &nbsp; THE END OF TEEN ERA</p>
+                            <p class="headline headline-4">12 &nbsp; FEELED SO CREEP WHILE WRITING ALL THIS 😭😭</p>
+                        </div>
+                        <div class="mag-click-hint">tap to turn →</div>
+                    </div>
+                </div>
+
+                <!-- Page 2: Birthday Message -->
+                <div class="magazine-page page-spread" data-page="1">
+                    <div class="page-front spread-layout spread-centered">
+                        <div class="birthday-letter">
+                            <h2 class="letter-title" style="font-family: 'Great Vibes', cursive;">A Letter to Navya</h2>
+                            <div class="letter-content">
+                                <p style="font-family: 'Dancing Script', cursive; font-size: 1.4rem;">Dear Navya,</p>
+                                <p style="font-family: 'Poppins', sans-serif;">Happy 19th Birthday! 🎂</p>
+                                <p style="font-family: 'Poppins', sans-serif;">Today marks the last chapter of your
+                                    teenage years, and I legit don't know how you gonna feel after this. But ya thankyou
+                                    for listening to my maths ka randi rona all the time and ya besy of luck for the
+                                    future. </p>
+                                <p
+                                    style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.2rem;">
+                                    "In every romcom, there's that one person who makes everything better. That's you."
+                                </p>
+                                <p style="font-family: 'Poppins', sans-serif;">Here's to 19 — to new adventures, bigger
+                                    dreams, and a whole lot more happy endings. The best chapters are still unwritten.
+                                </p>
+                                <p style="font-family: 'Sacramento', cursive; font-size: 2rem; color: var(--pink-hot);">
+                                    Your truley,</p>
+                                <p style="font-family: 'Satisfy', cursive; font-size: 1.5rem;">Tanishq🙈 ♡</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page navigation -->
+            <div class="magazine-nav">
+                <button class="mag-nav-btn mag-prev" id="mag-prev">← prev</button>
+                <div class="mag-page-indicator">
+                    <span id="mag-current-page">1</span> / <span id="mag-total-pages">2</span>
+                </div>
+                <button class="mag-nav-btn mag-next" id="mag-next">next →</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== SECTION 3: SCRAPBOOK ==================== -->
+    <section class="section section-scrapbook" id="section-2">
+        <div class="scrapbook-bg-pattern"></div>
+
+        <h2 class="scrapbook-title">
+            <span style="font-family: 'Abril Fatface', serif;">Scrapbook</span>
+            <span class="scrapbook-sparkle">✦</span>
+        </h2>
+        <p class="scrapbook-subtitle" style="font-family: 'Dancing Script', cursive;"> With the limited photos that i
+            have :(( ♡</p>
+
+        <div class="scrapbook-grid">
+            <!-- Photo 1 -->
+            <div class="scrapbook-card card-1" style="--rotate: -3deg;">
+                <div class="card-tape tape-pink"></div>
+                <div class="card-photo-wrapper">
+                    <!-- REPLACE: Change src to actual photo -->
+                    <img src="photos/memory-1.jpg" alt="Memory 1" class="scrapbook-photo">
+                </div>
+                <div class="card-caption">
+                    <p class="caption-title" style="font-family: 'Satisfy', cursive;">Best moments ✨</p>
+                    <p class="caption-sub" style="font-family: 'Poppins', sans-serif; font-size: 0.75rem;">always
+                        laughing</p>
+                </div>
+            </div>
+
+            <!-- Photo 2 -->
+            <div class="scrapbook-card card-2" style="--rotate: 2deg;">
+                <div class="card-tape tape-yellow"></div>
+                <div class="card-photo-wrapper">
+                    <!-- REPLACE: Change src to actual photo -->
+                    <img src="photos/memory-2.jpeg" alt="Memory 2" class="scrapbook-photo">
+                </div>
+                <div class="card-caption">
+                    <p class="caption-title" style="font-family: 'Dancing Script', cursive;">Smajh hi nahi araha
+                        kya caption likhu😞😞</p>
+                    <p class="caption-sub" style="font-family: 'Poppins', sans-serif; font-size: 0.75rem;">am not so
+                        creative :(
+                    </p>
+                </div>
+            </div>
+
+            <!-- Photo 3 -->
+            <div class="scrapbook-card card-3" style="--rotate: -2deg;">
+                <div class="card-tape tape-purple"></div>
+                <div class="card-photo-wrapper">
+                    <!-- REPLACE: Change src to actual photo -->
+                    <img src="photos/memory-3.jpg" alt="Memory 3" class="scrapbook-photo">
+                </div>
+                <div class="card-caption">
+                    <p class="caption-title" style="font-family: 'Pacifico', cursive;">Romcom queen 👑</p>
+                    <p class="caption-sub" style="font-family: 'Poppins', sans-serif; font-size: 0.75rem;">binge-watch
+                        girl</p>
+                </div>
+            </div>
+
+            <!-- Photo 4 -->
+            <div class="scrapbook-card card-4" style="--rotate: 3deg;">
+                <div class="card-tape tape-blue"></div>
+                <div class="card-photo-wrapper">
+                    <!-- REPLACE: Change src to actual photo -->
+                    <img src="photos/memory-4.jpg" alt="Memory 4" class="scrapbook-photo">
+                </div>
+                <div class="card-caption">
+                    <p class="caption-title" style="font-family: 'Sacramento', cursive; font-size: 1.5rem;">The only
+                        photo that i have :(( 💫</p>
+                    <p class="caption-sub" style="font-family: 'Poppins', sans-serif; font-size: 0.75rem;">PR YEH PHOTO
+                        BHI PURI NAHI H😭😭</p>
+                </div>
+            </div>
+
+
+        </div>
+
+        <!-- Decorative stickers -->
+        <div class="sticker sticker-heart-1">💗</div>
+        <div class="sticker sticker-star-1">⭐</div>
+        <div class="sticker sticker-sparkle-1">✨</div>
+        <div class="sticker sticker-heart-2">💖</div>
+        <div class="sticker sticker-flower-1">🌸</div>
+        <div class="sticker sticker-butterfly">🦋</div>
+    </section>
+
+    <!-- ==================== SECTION 4: BALLOON FINALE ==================== -->
+    <section class="section section-finale" id="section-3">
+        <div class="finale-gradient"></div>
+
+        <!-- Balloon container -->
+        <div class="balloons-container" id="balloons-container"></div>
+
+        <!-- Confetti canvas -->
+        <canvas id="confetti-canvas"></canvas>
+
+        <!-- Main content -->
+        <div class="finale-content">
+            <div class="finale-text-wrapper">
+                <p class="finale-pre"
+                    style="font-family: 'Cormorant Garamond', serif; font-weight: 300; font-style: italic;">wishing the
+                    most amazing girl</p>
+                <h2 class="finale-title">
+                    <span class="finale-happy"
+                        style="font-family: 'Outfit', sans-serif; font-weight: 100; letter-spacing: 8px; text-transform: uppercase;">Happy</span>
+                    <span class="finale-birthday"
+                        style="font-family: 'Unbounded', sans-serif; font-weight: 900;">BIRTHDAY</span>
+                </h2>
+                <h1 class="finale-name"
+                    style="font-family: 'Cormorant Garamond', serif; font-weight: 700; font-style: italic;">Navya</h1>
+                <div class="finale-age-wrapper">
+                    <div class="finale-age">
+                        <span class="age-number"
+                            style="font-family: 'Unbounded', sans-serif; font-weight: 200;">19</span>
+                    </div>
+                </div>
+                <p class="finale-tagline" style="font-family: 'Outfit', sans-serif; font-weight: 300;">The end of teen
+                    years — the start of something extraordinary ✦</p>
+                <p class="finale-date"
+                    style="font-family: 'Outfit', sans-serif; font-weight: 500; letter-spacing: 6px; text-transform: uppercase;">
+                    May 10, 2026</p>
+            </div>
+
+            <div class="finale-wishes">
+                <p style="font-family: 'Outfit', sans-serif; font-weight: 300;">🎂 🎉 🥳 💖 ✨ 🎁 🌟 💫 🦋 🌸</p>
+            </div>
+        </div>
+
+        <!-- Extra floating elements -->
+        <div class="floating-emoji floating-emoji-1">🎂</div>
+        <div class="floating-emoji floating-emoji-2">🎁</div>
+        <div class="floating-emoji floating-emoji-3">🥳</div>
+        <div class="floating-emoji floating-emoji-4">💝</div>
+        <div class="floating-emoji floating-emoji-5">🎈</div>
+    </section>
+
+    <!-- Unicorn Studio SDK -->
+    <script>
+        !function () { var u = window.UnicornStudio; if (u && u.init) { if (document.readyState === "loading") { document.addEventListener("DOMContentLoaded", function () { u.init() }) } else { u.init() } } else { window.UnicornStudio = { isInitialized: !1 }; var i = document.createElement("script"); i.src = "https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v2.1.12/dist/unicornStudio.umd.js", i.onload = function () { if (document.readyState === "loading") { document.addEventListener("DOMContentLoaded", function () { UnicornStudio.init() }) } else { UnicornStudio.init() } }, (document.head || document.body).appendChild(i) } }();
+    </script>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

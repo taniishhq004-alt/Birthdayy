@@ -1,0 +1,569 @@
+/* ============================================
+   NAVYA'S BIRTHDAY WEBSITE - ROMCOM THEME
+   ============================================ */
+
+:root {
+    --pink-light: #fce4ec;
+    --pink-soft: #f8bbd0;
+    --pink-medium: #f48fb1;
+    --pink-hot: #ec407a;
+    --pink-deep: #c2185b;
+    --pink-dark: #880e4f;
+    --lavender: #e8d5f5;
+    --peach: #ffe0cc;
+    --gold: #ffd700;
+    --cream: #fff8f0;
+    --white: #ffffff;
+    --text-dark: #4a2040;
+    --text-light: #8e4585;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html {
+    scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--pink-light);
+    color: var(--text-dark);
+    overflow-x: hidden;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--pink-light); }
+::-webkit-scrollbar-thumb { background: var(--pink-medium); border-radius: 3px; }
+
+/* Sparkle cursor canvas */
+#sparkle-canvas {
+    position: fixed; top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none; z-index: 9999;
+}
+
+/* ============ NAV DOTS ============ */
+.nav-dots {
+    position: fixed; right: 24px; top: 50%;
+    transform: translateY(-50%);
+    display: flex; flex-direction: column; gap: 14px;
+    z-index: 1000;
+}
+.nav-dot {
+    width: 12px; height: 12px;
+    border-radius: 50%; border: 2px solid var(--pink-hot);
+    background: transparent; cursor: pointer;
+    transition: all 0.4s ease;
+}
+.nav-dot.active {
+    background: var(--pink-hot);
+    transform: scale(1.3);
+    box-shadow: 0 0 12px rgba(236,64,122,0.5);
+}
+
+/* Audio toggle */
+.audio-toggle {
+    position: fixed; top: 20px; right: 20px;
+    width: 48px; height: 48px; border-radius: 50%;
+    background: rgba(255,255,255,0.3); backdrop-filter: blur(10px);
+    border: 2px solid var(--pink-medium); cursor: pointer;
+    z-index: 1000; font-size: 1.3rem;
+    transition: transform 0.3s;
+}
+.audio-toggle:hover { transform: scale(1.1); }
+
+/* ============ SECTIONS ============ */
+.section {
+    min-height: 100vh; width: 100%;
+    position: relative; overflow: hidden;
+    scroll-snap-align: start;
+}
+
+/* ============ SECTION 1: HERO (Full-bleed like reference image) ============ */
+.section-hero {
+    background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 30%, #f48fb1 60%, #e8d5f5 100%);
+    display: flex; align-items: center; justify-content: center;
+}
+
+/* Unicorn Studio WebGL background — VISIBLE (creates the swirling pattern) */
+.unicorn-bg {
+    position: absolute; top: 0; left: 0;
+    width: 100% !important; height: 100% !important;
+    z-index: 1;
+}
+
+/* Hide ONLY the Unicorn Studio watermark link — NOT the WebGL background */
+a[href*="unicornstudio"],
+a[href*="unicorn.studio"] {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    width: 0 !important; height: 0 !important;
+    position: absolute !important;
+    overflow: hidden !important;
+}
+
+/* Sparkles */
+.sparkles-container {
+    position: absolute; top: 0; left: 0;
+    width: 100%; height: 100%; z-index: 5;
+    pointer-events: none;
+}
+
+/* Full-bleed hero layout */
+.hero-fullbleed {
+    position: relative; width: 100%; height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 10;
+}
+
+/* Side bold typography — NO background, text floats over WebGL scene */
+.hero-side-text {
+    position: absolute; top: 0; bottom: 0;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 15;
+    background: none;
+}
+.hero-side-left { left: 0; padding: 0 2% 0 3%; }
+.hero-side-right { right: 0; padding: 0 3% 0 2%; }
+.side-text-big {
+    font-size: clamp(5rem, 12vw, 12rem); font-weight: 900;
+    color: var(--white); letter-spacing: -2px;
+    text-shadow: 0 8px 40px rgba(236,64,122,0.4), 0 2px 10px rgba(136,14,79,0.3);
+    opacity: 0.9;
+}
+
+/* Center photo — large, blends seamlessly with WebGL background */
+.hero-photo-full {
+    position: relative; width: 65%; max-width: 700px;
+    height: 100vh;
+    z-index: 2;
+}
+.hero-img-full {
+    width: 100%; height: 100%; object-fit: cover;
+    filter: saturate(1.1) contrast(1.05);
+}
+.hero-photo-overlay {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(180deg, transparent 60%, rgba(236,64,122,0.1) 100%);
+    pointer-events: none;
+}
+
+/* NAVYA name — positioned at BOTTOM CENTER of the hero */
+.hero-name-overlay {
+    position: absolute; bottom: 6%; left: 50%;
+    transform: translateX(-50%); z-index: 20;
+    font-family: 'Unbounded', sans-serif; font-weight: 900;
+    font-size: clamp(3rem, 7vw, 6rem); letter-spacing: 18px;
+    color: var(--white);
+    text-shadow: 0 4px 30px rgba(236,64,122,0.5), 0 0 60px rgba(236,64,122,0.3);
+    white-space: nowrap;
+}
+.name-letter {
+    display: inline-block;
+    animation: letterPop 0.6s ease-out both;
+    animation-delay: calc(var(--i) * 0.1s + 0.5s);
+}
+@keyframes letterPop {
+    0% { opacity: 0; transform: translateY(40px) scale(0.5); }
+    60% { transform: translateY(-10px) scale(1.1); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Bottom info bar — hidden to match clean reference layout */
+.hero-bottom-bar {
+    display: none;
+}
+.birthday-badge {
+    display: flex; align-items: center; gap: 12px;
+    background: rgba(255,255,255,0.25); backdrop-filter: blur(10px);
+    padding: 12px 30px; border-radius: 50px;
+    border: 1px solid rgba(255,255,255,0.4);
+}
+.badge-text { font-family: 'Poppins', sans-serif; font-size: 0.85rem; letter-spacing: 3px; color: var(--pink-deep); font-weight: 600; }
+.badge-number {
+    font-family: 'Unbounded', sans-serif; font-size: 2.5rem; font-weight: 700; color: var(--pink-hot);
+    text-shadow: 0 2px 10px rgba(236,64,122,0.4);
+}
+
+/* Quote rotator */
+.quote-rotator { height: 50px; position: relative; width: 100%; max-width: 500px; }
+.birthday-quote {
+    position: absolute; width: 100%; text-align: center;
+    font-family: 'Dancing Script', cursive; font-size: 1.15rem;
+    color: var(--white); opacity: 0;
+    transition: opacity 0.8s ease, transform 0.8s ease;
+    transform: translateY(10px);
+    text-shadow: 0 2px 10px rgba(0,0,0,0.15);
+}
+.birthday-quote.active { opacity: 1; transform: translateY(0); }
+
+/* Scroll hint */
+.scroll-hint {
+    font-family: 'Poppins', sans-serif; font-size: 0.75rem;
+    color: var(--white); letter-spacing: 2px; opacity: 0.7;
+    animation: fadeInUp 1s ease 2s both;
+}
+.scroll-arrow { animation: bounceDown 1.5s ease infinite; font-size: 1.2rem; }
+@keyframes bounceDown {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(8px); }
+}
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 0.7; transform: translateY(0); }
+}
+
+@keyframes sparkleFloat {
+    0%, 100% { opacity: 0.3; transform: scale(0.8) rotate(0deg); }
+    50% { opacity: 1; transform: scale(1.3) rotate(180deg); }
+}
+
+/* Floating hearts */
+.floating-hearts { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 4; }
+.heart-float {
+    position: absolute; bottom: -50px; font-size: 1.5rem; opacity: 0;
+    animation: heartRise linear infinite;
+}
+@keyframes heartRise {
+    0% { opacity: 0; transform: translateY(0) rotate(0deg) scale(0.5); }
+    10% { opacity: 0.8; }
+    90% { opacity: 0.3; }
+    100% { opacity: 0; transform: translateY(-110vh) rotate(360deg) scale(1.2); }
+}
+
+/* ============ SECTION 2: MAGAZINE ============ */
+.section-magazine {
+    background: linear-gradient(180deg, #fdf0f5 0%, #f8e8f0 50%, #f0dde8 100%);
+    display: flex; align-items: center; justify-content: center;
+    padding: 40px 20px;
+}
+.magazine-wrapper {
+    width: 100%; max-width: 900px;
+    display: flex; flex-direction: column; align-items: center; gap: 24px;
+}
+.magazine-book {
+    width: 100%; max-width: 850px;
+    position: relative; perspective: 1500px;
+}
+.magazine-page {
+    width: 100%; min-height: 520px;
+    background: var(--white);
+    border-radius: 4px;
+    box-shadow: 0 10px 40px rgba(136,14,79,0.15), 0 2px 10px rgba(0,0,0,0.05);
+    transition: transform 0.8s cubic-bezier(0.4,0,0.2,1), opacity 0.5s ease;
+    display: none;
+    transform-origin: left center;
+}
+.magazine-page.active { display: block; animation: pageFlipIn 0.7s ease both; }
+@keyframes pageFlipIn {
+    from { opacity: 0; transform: rotateY(-15deg) scale(0.95); }
+    to { opacity: 1; transform: rotateY(0) scale(1); }
+}
+
+/* Magazine cover */
+.page-front { padding: 40px; height: 100%; }
+.page-cover .page-front {
+    background: linear-gradient(135deg, #fff5f9, #ffe0ed, #fff5f9);
+    display: flex; flex-direction: column; align-items: center;
+    text-align: center; gap: 20px; border-radius: 4px;
+}
+.magazine-header { width: 100%; }
+.mag-date { font-family: 'Poppins', sans-serif; font-size: 0.75rem; letter-spacing: 4px; color: var(--pink-hot); text-transform: uppercase; }
+.mag-title {
+    font-family: 'Playfair Display', serif; font-size: 2.8rem;
+    font-weight: 900; color: var(--pink-dark);
+    line-height: 1.1; margin: 8px 0;
+}
+.mag-subtitle { font-family: 'Dancing Script', cursive; font-size: 1.1rem; color: var(--pink-medium); }
+.magazine-cover-photo {
+    width: 220px; height: 280px; border-radius: 12px; overflow: hidden;
+    box-shadow: 0 8px 30px rgba(236,64,122,0.25);
+    border: 3px solid var(--white);
+}
+.mag-photo { width: 100%; height: 100%; object-fit: cover; }
+.magazine-headlines { text-align: left; width: 100%; max-width: 400px; }
+.headline {
+    font-family: 'Poppins', sans-serif; font-size: 0.8rem;
+    color: var(--text-dark); padding: 6px 0;
+    border-bottom: 1px solid rgba(236,64,122,0.15);
+    letter-spacing: 1px; font-weight: 500;
+}
+.mag-click-hint {
+    font-family: 'Dancing Script', cursive; font-size: 1rem;
+    color: var(--pink-hot); opacity: 0.7;
+    animation: bounceRight 1.5s ease infinite;
+}
+@keyframes bounceRight {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(8px); }
+}
+
+/* Magazine spread */
+.spread-layout {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 30px; align-items: center;
+}
+.spread-left { text-align: center; }
+.spread-photo {
+    width: 100%; max-height: 400px; object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+.spread-photo-caption {
+    font-family: 'Dancing Script', cursive; font-size: 1rem;
+    color: var(--pink-hot); margin-top: 8px;
+}
+.spread-right { padding: 10px; }
+.spread-section-num {
+    font-family: 'Abril Fatface', serif; font-size: 3rem;
+    color: var(--pink-soft); line-height: 1;
+}
+.spread-title { font-size: 2rem; color: var(--pink-dark); margin: 8px 0 16px; line-height: 1.2; }
+.spread-text { display: flex; flex-direction: column; gap: 12px; }
+.text-highlight { margin: 10px 0; }
+.quality-list { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-top: 10px; }
+.quality-list li { display: flex; align-items: center; gap: 10px; }
+.quality-emoji { font-size: 1.3rem; }
+
+/* Birthday letter */
+.spread-centered { display: flex; align-items: center; justify-content: center; }
+.birthday-letter {
+    max-width: 650px; margin: 0 auto; text-align: center;
+    padding: 30px;
+    background: linear-gradient(135deg, rgba(252,228,236,0.5), rgba(232,213,245,0.5));
+    border-radius: 16px; border: 1px solid rgba(236,64,122,0.15);
+}
+.letter-title { font-size: 2.8rem; color: var(--pink-hot); margin-bottom: 20px; }
+.letter-content { display: flex; flex-direction: column; gap: 14px; text-align: left; line-height: 1.7; }
+
+/* Magazine nav */
+.magazine-nav {
+    display: flex; align-items: center; gap: 20px;
+    background: rgba(255,255,255,0.6); backdrop-filter: blur(10px);
+    padding: 12px 28px; border-radius: 50px;
+    border: 1px solid rgba(236,64,122,0.2);
+}
+.mag-nav-btn {
+    background: none; border: none; cursor: pointer;
+    font-family: 'Poppins', sans-serif; font-size: 0.85rem;
+    color: var(--pink-hot); font-weight: 600;
+    transition: transform 0.3s, color 0.3s;
+}
+.mag-nav-btn:hover { transform: scale(1.05); color: var(--pink-deep); }
+.mag-nav-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+.mag-page-indicator {
+    font-family: 'Poppins', sans-serif; font-size: 0.85rem;
+    color: var(--text-light);
+}
+
+/* ============ SECTION 3: SCRAPBOOK ============ */
+.section-scrapbook {
+    background: var(--pink-soft);
+    padding: 60px 20px;
+    display: flex; flex-direction: column; align-items: center;
+    min-height: 100vh;
+}
+.scrapbook-bg-pattern {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background-image:
+        linear-gradient(rgba(255,255,255,0.15) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.15) 1px, transparent 1px);
+    background-size: 30px 30px;
+    z-index: 0;
+}
+.scrapbook-title {
+    font-size: 3rem; color: var(--pink-dark);
+    margin-bottom: 8px; z-index: 1; position: relative;
+}
+.scrapbook-sparkle { animation: sparkleFloat 2s ease-in-out infinite; display: inline-block; }
+.scrapbook-subtitle { font-size: 1.3rem; color: var(--text-light); margin-bottom: 40px; z-index: 1; position: relative; }
+.scrapbook-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 30px; max-width: 700px; width: 100%;
+    z-index: 1; position: relative;
+}
+.scrapbook-card {
+    background: var(--white); border-radius: 4px;
+    padding: 12px 12px 16px; box-shadow: 0 6px 25px rgba(0,0,0,0.12);
+    transform: rotate(var(--rotate, 0deg));
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+    position: relative; cursor: pointer;
+    animation: cardFadeIn 0.6s ease both;
+}
+/* Shift 2nd card slightly for a more organic scrapbook feel */
+.scrapbook-card.card-2 {
+    margin-top: 32px;
+    margin-left: -10px;
+}
+.scrapbook-card:hover {
+    transform: rotate(0deg) scale(1.05) translateY(-8px);
+    box-shadow: 0 15px 40px rgba(236,64,122,0.25);
+    z-index: 10;
+}
+@keyframes cardFadeIn {
+    from { opacity: 0; transform: rotate(var(--rotate, 0deg)) translateY(30px); }
+    to { opacity: 1; }
+}
+.card-tape {
+    position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
+    width: 60px; height: 22px; border-radius: 2px; opacity: 0.7;
+}
+.tape-pink { background: rgba(244,143,177,0.6); }
+.tape-yellow { background: rgba(255,224,130,0.6); }
+.tape-purple { background: rgba(206,147,216,0.6); }
+.tape-blue { background: rgba(144,202,249,0.6); }
+.card-photo-wrapper {
+    width: 100%; height: 200px; overflow: hidden;
+    border-radius: 2px; margin-bottom: 10px;
+    background: linear-gradient(135deg, var(--pink-light), var(--lavender));
+}
+.scrapbook-photo { width: 100%; height: 100%; object-fit: cover; }
+.card-caption { text-align: center; }
+.caption-title { font-size: 1.1rem; color: var(--pink-hot); }
+.caption-sub { color: var(--text-light); margin-top: 2px; }
+
+/* Decorative stickers */
+.sticker {
+    position: absolute; font-size: 2rem; z-index: 2;
+    animation: stickerFloat 4s ease-in-out infinite;
+    pointer-events: none;
+}
+.sticker-heart-1 { top: 10%; left: 5%; animation-delay: 0s; }
+.sticker-star-1 { top: 20%; right: 8%; animation-delay: 0.5s; }
+.sticker-sparkle-1 { bottom: 15%; left: 10%; animation-delay: 1s; }
+.sticker-heart-2 { bottom: 25%; right: 5%; animation-delay: 1.5s; }
+.sticker-flower-1 { top: 50%; left: 3%; animation-delay: 2s; }
+.sticker-butterfly { top: 40%; right: 4%; animation-delay: 2.5s; }
+@keyframes stickerFloat {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    25% { transform: translateY(-10px) rotate(5deg); }
+    75% { transform: translateY(5px) rotate(-3deg); }
+}
+
+/* ============ SECTION 4: FINALE ============ */
+.section-finale {
+    background: linear-gradient(180deg, #f8bbd0 0%, #f48fb1 30%, #ec407a 60%, #c2185b 100%);
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+}
+.finale-gradient {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(ellipse at center, rgba(255,255,255,0.1) 0%, transparent 70%);
+}
+#confetti-canvas {
+    position: absolute; top: 0; left: 0;
+    width: 100%; height: 100%; pointer-events: none; z-index: 5;
+}
+.balloons-container {
+    position: absolute; top: 0; left: 0;
+    width: 100%; height: 100%; pointer-events: none; z-index: 3; overflow: hidden;
+}
+.balloon {
+    position: absolute; bottom: -120px;
+    width: 60px; height: 75px; border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    animation: balloonFloat linear infinite;
+    opacity: 0.85;
+}
+.balloon::after {
+    content: ''; position: absolute; bottom: -30px;
+    left: 50%; width: 1px; height: 30px;
+    background: rgba(255,255,255,0.5); transform: translateX(-50%);
+}
+@keyframes balloonFloat {
+    0% { transform: translateY(0) rotate(0deg) scale(0.8); opacity: 0; }
+    5% { opacity: 0.85; }
+    95% { opacity: 0.6; }
+    100% { transform: translateY(-120vh) rotate(15deg) scale(1); opacity: 0; }
+}
+
+/* Finale content */
+.finale-content {
+    position: relative; z-index: 10; text-align: center;
+    color: var(--white);
+}
+.finale-pre { font-size: 1.6rem; margin-bottom: 10px; opacity: 0.85; letter-spacing: 2px; }
+.finale-happy { font-size: 3rem; display: block; opacity: 0.9; }
+.finale-birthday {
+    font-size: 4.5rem; letter-spacing: 6px; display: block;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    line-height: 1;
+}
+.finale-name {
+    font-size: 8rem; letter-spacing: 4px;
+    text-shadow: 0 6px 30px rgba(0,0,0,0.3);
+    animation: nameGlow 2s ease-in-out infinite alternate;
+    margin: 10px 0; line-height: 1;
+}
+@keyframes nameGlow {
+    from { text-shadow: 0 0 20px rgba(255,255,255,0.3), 0 6px 30px rgba(0,0,0,0.3); }
+    to { text-shadow: 0 0 50px rgba(255,255,255,0.6), 0 0 100px rgba(255,215,0,0.2), 0 6px 30px rgba(0,0,0,0.3); }
+}
+.finale-age-wrapper { margin: 20px 0; }
+.finale-age {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 110px; height: 110px; border-radius: 50%;
+    background: rgba(255,255,255,0.1); backdrop-filter: blur(12px);
+    border: 2px solid rgba(255,255,255,0.3);
+    animation: agePulse 2s ease-in-out infinite;
+}
+@keyframes agePulse {
+    0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255,255,255,0.3); }
+    50% { transform: scale(1.08); box-shadow: 0 0 0 20px rgba(255,255,255,0); }
+}
+.age-number { font-size: 3.2rem; }
+.finale-tagline { font-size: 1.5rem; margin: 16px 0 8px; opacity: 0.85; letter-spacing: 1px; }
+.finale-date { font-size: 0.85rem; opacity: 0.6; }
+.finale-wishes { margin-top: 24px; font-size: 1.5rem; letter-spacing: 5px; }
+
+/* Floating emojis */
+.floating-emoji {
+    position: absolute; font-size: 2.5rem; z-index: 6;
+    animation: emojiFloat 5s ease-in-out infinite;
+    pointer-events: none;
+}
+.floating-emoji-1 { top: 15%; left: 10%; animation-delay: 0s; }
+.floating-emoji-2 { top: 25%; right: 12%; animation-delay: 1s; }
+.floating-emoji-3 { bottom: 20%; left: 8%; animation-delay: 2s; }
+.floating-emoji-4 { bottom: 30%; right: 10%; animation-delay: 0.5s; }
+.floating-emoji-5 { top: 45%; left: 5%; animation-delay: 1.5s; }
+@keyframes emojiFloat {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    33% { transform: translateY(-20px) rotate(10deg); }
+    66% { transform: translateY(10px) rotate(-8deg); }
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 768px) {
+    .hero-name-overlay { font-size: 2.5rem; letter-spacing: 10px; }
+    .side-text-big { font-size: clamp(3rem, 10vw, 6rem); }
+    .hero-photo-full { width: 55%; }
+    .spread-layout { grid-template-columns: 1fr; }
+    .scrapbook-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .mag-title { font-size: 2rem; }
+    .finale-name { font-size: 5rem; letter-spacing: 2px; }
+    .finale-happy { font-size: 2rem; }
+    .finale-birthday { font-size: 2.5rem; letter-spacing: 4px; }
+    .nav-dots { right: 12px; }
+    .letter-content { font-size: 0.9rem; }
+}
+
+@media (max-width: 480px) {
+    .hero-name-overlay { font-size: 2rem; letter-spacing: 6px; }
+    .side-text-big { font-size: 3rem; }
+    .hero-photo-full { width: 65%; }
+    .scrapbook-grid { grid-template-columns: 1fr; max-width: 320px; }
+    .finale-name { font-size: 3.5rem; }
+    .finale-birthday { font-size: 2rem; }
+    .scrapbook-title { font-size: 2rem; }
+}
+
+/* ============ HIDE UNICORN STUDIO WATERMARK ONLY ============ */
+body > div:last-of-type:not(.section):not(#sparkle-canvas):not(.nav-dots):not(.audio-toggle) a[href*="unicorn"],
+body > div:not([class]):not([id]):not(section) {
+    display: none !important;
+}
